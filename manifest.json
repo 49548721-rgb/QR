@@ -1,0 +1,24 @@
+{
+  "name": "QR Seguro: pensá antes de escanear",
+  "short_name": "QR Seguro",
+  "description": "Aprendé cómo funciona el quishing, la estafa con códigos QR falsos, y cómo evitarla.",
+  "lang": "es-AR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070d14",
+  "theme_color": "#0E1B2C",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

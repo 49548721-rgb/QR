@@ -1,0 +1,471 @@
+:root {
+  --noche: #070d14;
+  --tinta: #0e1b2c;
+  --borde: #1d2c42;
+  --ceniza: #b8c0c8;
+  --hueso: #e6e2d6;
+  --cinta: #c8a21b;
+  --alerta: #e24b47;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--noche);
+  color: var(--ceniza);
+  font: 1.0625rem/1.7 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 42rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  padding-bottom: 3.5rem;
+  background:
+    radial-gradient(ellipse at 50% 0%, #061325 0%, transparent 65%),
+    linear-gradient(to bottom, var(--tinta), var(--noche));
+  border-bottom: 1px solid var(--borde);
+  overflow: hidden;
+}
+
+/* Grano sutil para que el fondo se vea sucio y no plano */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Cinta de precaución: lo más llamativo de la página */
+.tape {
+  height: 1.1rem;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--cinta) 0 1.1rem,
+    #0a0a0a 1.1rem 2.2rem
+  );
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.7);
+}
+
+.hero-texto {
+  position: relative;
+  z-index: 1;
+  padding-top: 3.5rem;
+}
+
+h1 {
+  margin: 0 0 1.25rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.2rem, 8vw, 3.9rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--hueso);
+  text-shadow: 0 0 28px rgba(226, 75, 71, 0.3);
+  animation: parpadeo 1.4s steps(1, end) 1;
+}
+
+.lead {
+  margin: 0;
+  max-width: 36rem;
+  font-size: 1.2rem;
+  color: var(--ceniza);
+}
+
+.lead strong {
+  color: var(--alerta);
+}
+
+/* ---------- Contenido ---------- */
+
+main {
+  padding-block: 3rem 4rem;
+}
+
+section + section {
+  margin-top: 3rem;
+}
+
+h2 {
+  margin: 0 0 1rem;
+  padding-left: 0.85rem;
+  border-left: 3px solid var(--alerta);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.6rem;
+  line-height: 1.2;
+  color: var(--hueso);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+/* ---------- Bloque de advertencia ---------- */
+
+.imagen-educativa {
+  padding: 1.5rem;
+  background: var(--tinta);
+  border: 1px solid var(--noche);
+  border-radius: 4px;
+}
+
+/* Pantalla de "video no encontrado" */
+.video-error {
+  position: relative;
+  isolation: isolate;
+  container-type: inline-size;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  aspect-ratio: 1.85 / 1;
+  margin-top: 1.25rem;
+  border-radius: 2px;
+  overflow: hidden;
+  text-align: center;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", "Courier New", monospace;
+  background:
+    linear-gradient(to bottom, #222a35 0 9%, transparent 9% 88%, #222a35 88% 100%),
+    #101112;
+}
+
+/* Estática de la pantalla */
+.video-error::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.28;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.ve-error {
+  margin: 0;
+  padding-left: 0.22em; /* compensa el espacio final de la separación entre letras */
+  font-size: clamp(2rem, 7.5cqw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.22em;
+  color: #e53232;
+  animation: glitchRapido 1.7s infinite;
+}
+
+.ve-msg {
+  margin: 0.3rem 0 0;
+  font-size: clamp(0.8rem, 2.8cqw, 1.1rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #f2f2f2;
+}
+
+.ve-aviso {
+  margin: clamp(1rem, 6cqw, 2.4rem) 0 0;
+  font-size: clamp(0.7rem, 1.9cqw, 0.8rem);
+  letter-spacing: 0.06em;
+  color: #8a8d92;
+}
+
+/* ---------- Accesibilidad y movimiento ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--cinta);
+  outline-offset: 3px;
+}
+
+/* El título parpadea una sola vez, como una luz que falla */
+@keyframes parpadeo {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  16%  { opacity: 0.15; }
+  24%  { opacity: 1; }
+  30%  { opacity: 0.4; }
+  38%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+
+/* ESTATICA INTENSA */
+
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Ruido visual */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.25;
+
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+    animation: ruido 0.15s steps(3) infinite;
+}
+
+@keyframes ruido {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-3%, 2%); }
+    50% { transform: translate(2%, -3%); }
+    75% { transform: translate(-2%, -2%); }
+    100% { transform: translate(3%, 3%); }
+}
+
+/* Líneas horizontales */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 998;
+
+    background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        rgba(0, 0, 0, 0.12) 1px,
+        transparent 3px,
+        transparent 5px
+    );
+
+    animation: lineas 0.12s linear infinite;
+}
+
+@keyframes lineas {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(8px); }
+}
+
+/* Interferencia general */
+.portada {
+    animation: pantalla 4s infinite;
+}
+
+@keyframes pantalla {
+    0%, 90%, 100% {
+        transform: translateX(0);
+        filter: none;
+    }
+
+    91% {
+        transform: translateX(5px);
+        filter: brightness(1.5);
+    }
+
+    93% {
+        transform: translateX(-5px);
+        filter: contrast(1.5);
+    }
+
+    95% {
+        transform: translateX(3px);
+    }
+}
+
+/* Glitch de los títulos */
+h1, h2 {
+    animation: glitch 1.5s infinite;
+}
+
+@keyframes glitch {
+    0%, 85%, 100% {
+        text-shadow: none;
+        transform: translateX(0);
+    }
+
+    87% {
+        text-shadow: 4px 0 red, -4px 0 cyan;
+        transform: translateX(4px);
+    }
+
+    90% {
+        text-shadow: -4px 0 red, 4px 0 cyan;
+        transform: translateX(-4px);
+    }
+
+    93% {
+        text-shadow: 2px 0 white;
+        transform: translateX(2px);
+    }
+}
+
+/* GLITCH CON DIFERENTES VELOCIDADES */
+
+/* Títulos principales */
+h1 {
+    animation: glitchRapido 1.7s infinite;
+}
+
+h2 {
+    animation: glitchLento 3.2s infinite;
+}
+
+h3 {
+    animation: glitchMedio 2.3s infinite;
+}
+
+/* Párrafos */
+p {
+    animation: glitchTexto 4s infinite;
+}
+
+/* Listas */
+li {
+    animation: glitchRapido 2.8s infinite;
+}
+
+/* Enlaces */
+a {
+    animation: glitchMedio 3.7s infinite;
+}
+
+/* Botones */
+button {
+    animation: glitchLento 2.1s infinite;
+}
+
+/* Tarjetas */
+.caja {
+    animation: cajaGlitch 3.5s infinite;
+}
+
+/* EFECTOS */
+
+@keyframes glitchRapido {
+    0%, 80%, 100% {
+        transform: translate(0);
+        text-shadow: none;
+    }
+
+    82% {
+        transform: translate(4px, -2px);
+        text-shadow: 3px 0  rgb(159, 27, 27), -3px 0 rgb(16, 255, 255);
+    }
+
+    84% {
+        transform: translate(-4px, 2px);
+        text-shadow: -3px 0  rgb(159, 27, 27), 3px 0  rgb(16, 255, 255);
+    }
+
+    86% {
+        transform: translate(2px, 0);
+    }
+}
+
+@keyframes glitchMedio {
+    0%, 88%, 100% {
+        transform: translate(0);
+        text-shadow: none;
+    }
+
+    90% {
+        transform: translate(-3px, 2px);
+        text-shadow: 3px 0  rgb(16, 255, 255);
+    }
+
+    93% {
+        transform: translate(3px, -2px);
+        text-shadow: -3px 0  rgb(159, 27, 27);
+    }
+}
+
+@keyframes glitchLento {
+    0%, 91%, 100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+
+    93% {
+        transform: translate(5px, 0);
+        opacity: 0.6;
+        text-shadow: 4px 0  rgb(159, 27, 27), -4px 0  rgb(16, 255, 255);
+    }
+
+    95% {
+        transform: translate(-5px, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes glitchTexto {
+    0%, 85%, 100% {
+        transform: translate(0);
+        text-shadow: none;
+    }
+
+    87% {
+        transform: translate(2px, 1px);
+        text-shadow: 2px 0 rgb(159, 27, 27);
+    }
+
+    89% {
+        transform: translate(-3px, -1px);
+        text-shadow: -2px 0 rgb(16, 255, 255);
+    }
+
+    91% {
+        transform: translate(0);
+    }
+}
+
+@keyframes cajaGlitch {
+    0%, 90%, 100% {
+        transform: translate(0);
+    }
+
+    92% {
+        transform: translate(4px, -3px);
+        filter: brightness(1.4);
+    }
+
+    94% {
+        transform: translate(-4px, 2px);
+        filter: brightness(0.7);
+    }
+}
+
+
+/* ============================================================
+   AJUSTES PARA QUE LOS EFECTOS FUNCIONEN CON ESTA PÁGINA
+   ============================================================ */
+
+/* En este HTML la portada es .hero y la tarjeta es .imagen-educativa */
+.hero {
+    animation: pantalla 4s infinite;
+}
+
+.imagen-educativa {
+    animation: cajaGlitch 3.5s infinite;
+}
+
+/* El h1 mantiene su parpadeo inicial y además suma el glitch */
+h1 {
+    animation: parpadeo 1.4s steps(1, end) 1, glitchRapido 1.7s infinite;
+}
+
+/* Sin movimiento para quien lo pide en su dispositivo */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+    }
+}
